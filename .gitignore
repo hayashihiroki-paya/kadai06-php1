@@ -1,0 +1,8 @@
+# test.js の削除
+test.js
+
+# data フォルダを削除
+data/
+
+# node_modules フォルダを削除
+node_modules/
