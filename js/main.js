@@ -183,7 +183,7 @@ $(document).on("click", ".book", async function () {
     // 登録済みココ好きポイントをregisteredViewに表示する
     // isbnを送ってカテゴリ名と詳細項目を配列で返してもらう
     // 関数化します
-    goodPointLead(favoriteBookList[index].isbn);
+    goodPointRead(favoriteBookList[index].isbn);
 
     // 作成したボタンをUIデザインに変更する
     $(".button").button();
@@ -296,7 +296,7 @@ $(document).on("click", ".saveButton", async function () {
         goodPointInput.splice(0, goodPointInput.length);
 
         // 登録済みここ好きポイントを更新して表示する
-        goodPointLead(isbn);
+        goodPointRead(isbn);
 
         // buttonの色変えを戻す
         $(".button").removeClass("selected");
@@ -407,7 +407,7 @@ $(".userDataButton").on("click", async function () {
     // array = [{category: "世界観", goodPoint: "ファンタジー"},{...}]みたいな
     // good_points.csvからuserIDごとの情報をまとめて取得する
     // favorite_save.php に情報を送って保存
-    await $.post("php/user_data_lead.php", {
+    await $.post("php/user_data_read.php", {
         // 送る情報なし
     }, function (res) {
         // console.log("res", res);
@@ -555,7 +555,7 @@ async function loadBookList() {
     // console.log("load開始");
 
     // postでいいのか？送るデータないけど
-    await $.post("php/favorite_lead.php", {
+    await $.post("php/favorite_read.php", {
 
     }, function (res) {
         if (res) {
@@ -617,8 +617,8 @@ function generateGoodPointButton(categoryName) {
 }
 
 // 詳細画面用に、isbn受け取ってここ好きポイントを表示する
-async function goodPointLead(isbn) {
-    await $.post("php/good_point_lead.php", {
+async function goodPointRead(isbn) {
+    await $.post("php/good_point_read.php", {
         isbn: isbn
     }, function (res) {
         // console.log("res:", res);
